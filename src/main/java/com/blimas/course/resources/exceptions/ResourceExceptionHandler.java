@@ -1,5 +1,6 @@
 package com.blimas.course.resources.exceptions;
 
+import com.blimas.course.services.exceptions.DatabaseException;
 import com.blimas.course.services.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,20 @@ public class ResourceExceptionHandler {
                 httpStatus.value(),
                 error,
                 resourceNotFoundException.getMessage(),
+                httpServletRequest.getRequestURI());
+
+        return ResponseEntity.status(httpStatus).body(standardError);
+    }
+
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<StandardError> resourceNotFound(DatabaseException databaseException, HttpServletRequest httpServletRequest) {
+        String error = "Database error";
+        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+        StandardError standardError = new StandardError(
+                Instant.now(),
+                httpStatus.value(),
+                error,
+                databaseException.getMessage(),
                 httpServletRequest.getRequestURI());
 
         return ResponseEntity.status(httpStatus).body(standardError);

@@ -12,10 +12,11 @@ import java.util.Objects;
 @Table(name = "tb_user")
 public class User implements Serializable {
 
+    private static final long serialVersionUID = -8448051897417035067L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private String name;
     private String email;
     private String phone;
     private String password;
@@ -31,9 +32,9 @@ public class User implements Serializable {
         return id;
     }
 
-    public User(Long id, String nome, String email, String phone, String password) {
+    public User(Long id, String name, String email, String phone, String password) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.email = email;
         this.phone = phone;
         this.password = password;
@@ -43,12 +44,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String nome) {
+        this.name = nome;
     }
 
     public String getEmail() {

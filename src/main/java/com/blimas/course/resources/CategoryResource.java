@@ -1,6 +1,8 @@
 package com.blimas.course.resources;
 
+import com.blimas.course.entities.Category;
 import com.blimas.course.entities.User;
+import com.blimas.course.services.CategoryService;
 import com.blimas.course.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,21 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResource {
+@RequestMapping(value = "/categories")
+public class CategoryResource {
 
     @Autowired
-    private UserService userService;
+    private CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<List<User> > findAll(){
-        List<User> userList = userService.findAll();
-        return ResponseEntity.ok().body(userList);
+    public ResponseEntity<List<Category> > findAll(){
+        List<Category> categoryList = categoryService.findAll();
+        return ResponseEntity.ok().body(categoryList);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id){
-        User user = userService.findById(id);
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<Category> findById(@PathVariable Long id){
+        Category category = categoryService.findById(id);
+        return ResponseEntity.ok().body(category);
     }
 }

@@ -20,8 +20,8 @@ public class OrderResource {
 
     @GetMapping
     public ResponseEntity<List<Order> > findAll(){
-        List<Order> listOrder = orderService.findAll();
-        return ResponseEntity.ok().body(listOrder);
+        List<Order> orderList = orderService.findAll();
+        return ResponseEntity.ok().body(orderList);
     }
 
     @GetMapping(value = "/{id}")
